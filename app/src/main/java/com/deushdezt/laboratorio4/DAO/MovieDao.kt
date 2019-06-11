@@ -19,4 +19,6 @@ interface MovieDao{
     @Query("SELECT * FROM movies WHERE title LIKE :pattern")
     fun searchMoviePattern(pattern : String): LiveData<List<Movie>>
 
+
+
 }
