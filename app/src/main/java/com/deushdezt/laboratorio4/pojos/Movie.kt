@@ -2,20 +2,27 @@ package com.deushdezt.laboratorio4.pojos
 
 import android.os.Parcel
 import android.os.Parcelable
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
+
+@Entity(tableName = "movies")
 data class Movie (
-    val Title:String = "N/A",
-    val Year:String = "N/A",
-    val Released: String = "N/A",
-    val Runtime:String = "N/A",
-    val Genre:String = "N/A",
-    val Director:String = "N/A",
-    val Actors:String = "N/A",
-    val Plot:String = "N/A",
-    val Language:String = "N/A",
-    val imdbRating:String = "N/A",
-    val Poster:String = "N/A"
+    @ColumnInfo(name = "title") val Title:String = "N/A",
+    @ColumnInfo(name = "year") val Year:String = "N/A",
+    @ColumnInfo(name = "release") val Released: String = "N/A",
+    @ColumnInfo(name = "runtime") val Runtime:String = "N/A",
+    @ColumnInfo(name = "genre") val Genre:String = "N/A",
+    @ColumnInfo(name = "director") val Director:String = "N/A",
+    @ColumnInfo(name = "actors") val Actors:String = "N/A",
+    @ColumnInfo(name = "plot") val Plot:String = "N/A",
+    @ColumnInfo(name = "language") val Language:String = "N/A",
+    @ColumnInfo(name = "imdb") val imdbRating:String = "N/A",
+    @ColumnInfo(name = "poster") val Poster:String = "N/A"
 ) : Parcelable {
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "id") var id : Int = 0
     constructor(parcel: Parcel) : this(
         Title = parcel.readString(),
         Year = parcel.readString(),
