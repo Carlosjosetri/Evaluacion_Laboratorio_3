@@ -15,32 +15,37 @@ import kotlinx.coroutines.launch
 
 class MovieViewModel(val app: Application):AndroidViewModel(app){
     private val repository:MovieRepository
-    val allMovies: LiveData<List<Movie>>
+
 
     init{
         val movieDao = MovieRoomDatabase.getInstance(app).movieDao()
         repository = MovieRepository(movieDao)
-        allMovies = repository.getAllMovies()
     }
 
     private suspend fun insert(movie: Movie)=repository.insert(movie)
 
-    fun search(pattern:String)=viewModelScope.launch(Dispatchers.IO){
-        repository.searchMovie(pattern)
-    }
-
     private suspend fun delete()= repository.delete()
 
     fun retrieveMovies(name: String) = viewModelScope.launch(){
-        this@MovieViewModel.delete()//TODO OBTENEMOS NUESTRA TABLA LIMPIA
+        this@MovieViewModel.delete()
 
         val response = repository.RetriveMoviesAsync(name).await()
 
         if (response.isSuccessful) with(response){
-            //TODO WITH TRABAJA CON LA VARIABLE QUE LE MANDAS
-            this.body()?.forEach{
-                this@MovieViewModel.insert(it)
-            }//TODO PUEDE QUE VENGA VACIO POR ESO EL NULO
+
+            this.body()?.search?.forEach{
+                val response2 = repository.retriveInfoAsync(it.id).await()
+
+                if(response2.isSuccessful) with (response2){
+                    this@MovieViewModel.insert(this.body()!!)
+                }else with(response2){
+                    when(this.code()){
+                        404->{
+                            Toast.makeText(app,"Error",Toast.LENGTH_LONG).show()
+                        }
+                    }
+                }
+            }
         }
         else with(response){
             when(this.code()){
@@ -49,6 +54,10 @@ class MovieViewModel(val app: Application):AndroidViewModel(app){
                 }
             }
         }
+    }
+
+    fun getAll(): LiveData<List<Movie>> {
+        return repository.getAllMovies()
     }
 
 
