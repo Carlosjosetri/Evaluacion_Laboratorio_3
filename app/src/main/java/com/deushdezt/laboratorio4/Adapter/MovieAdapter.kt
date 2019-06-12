@@ -1,7 +1,18 @@
+package com.deushdezt.laboratorio4.Adapter
 
-class MovieAdapter(var movies:List<Movie>):RecyclerView.Adapter<MovieAdapter.ViewHolder>(){
 
-    override fun onCreateViewHolder(parent : ViewGroup,viewType : Int):ViewHolder{
+
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
+import com.deushdezt.laboratorio4.Database.pojos.Movie
+import com.deushdezt.laboratorio4.R
+import kotlinx.android.synthetic.main.cardview_movie.view.*
+
+class MovieAdapter(var movies:List<Movie>): RecyclerView.Adapter<MovieAdapter.ViewHolder>(){
+
+    override fun onCreateViewHolder(parent : ViewGroup, viewType : Int):ViewHolder{
         val view = LayoutInflater.from(parent.context).inflate(R.layout.cardview_movie,parent,false)
         return ViewHolder(view)
     }

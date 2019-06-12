@@ -61,6 +61,11 @@ dependencies {
 
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$archLifecycleVersion"
 
+    /*Lifecycle components*/
+    implementation "androidx.lifecycle:lifecycle-extensions:$archLifecycleVersion"
+    kapt "androidx.lifecycle:lifecycle-compiler:$archLifecycleVersion"
+    androidTestImplementation "androidx.arch.core:core-testing:$androidxArchVersion"
+
     api "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines"
     api "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines"
     kapt 'com.android.databinding:compiler:2.3.1'

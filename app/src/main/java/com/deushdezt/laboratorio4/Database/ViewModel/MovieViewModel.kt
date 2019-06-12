@@ -1,6 +1,7 @@
 package com.deushdezt.laboratorio4.Database.ViewModel
 
 import android.app.Application
+import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
@@ -32,12 +33,13 @@ class MovieViewModel(val app: Application):AndroidViewModel(app){
         val response = repository.RetriveMoviesAsync(name).await()
 
         if (response.isSuccessful) with(response){
-
+                Log.d("holi", response.body().toString())
             this.body()?.search?.forEach{
                 val response2 = repository.retriveInfoAsync(it.id).await()
 
                 if(response2.isSuccessful) with (response2){
-                    this@MovieViewModel.insert(this.body()!!)
+                    Log.d("holi",response2.body().toString())
+                    this@MovieViewModel.insert(response2.body()!!)
                 }else with(response2){
                     when(this.code()){
                         404->{

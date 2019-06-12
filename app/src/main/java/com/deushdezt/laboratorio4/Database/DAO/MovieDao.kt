@@ -20,6 +20,6 @@ interface MovieDao{
     fun searchMoviePattern(pattern : String): LiveData<List<Movie>>
 
     @Query("DELETE FROM movies")
-    fun delete()
+    suspend fun delete()
 
 }
