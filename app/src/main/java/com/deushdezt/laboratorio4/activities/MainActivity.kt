@@ -40,10 +40,12 @@ class MainActivity : AppCompatActivity() {
         btn_movie.setOnClickListener{
             viewModel.retrieveMovies(et_movie.text.toString())
        }
+
     }
 
-
-
+fun inter(){
+    
+}
 
 
 }

@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.deushdezt.laboratorio4.Database.pojos.Movie
 import com.deushdezt.laboratorio4.R
 import kotlinx.android.synthetic.main.cardview_movie.view.*
@@ -36,7 +37,13 @@ class MovieAdapter(var movies:List<Movie>): RecyclerView.Adapter<MovieAdapter.Vi
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
 
         fun bind(movie: Movie) = with(itemView){
+            this.movie_rate_cv.text=movie.imdbRating
+            this.movie_plot_cv.text=movie.Plot
+            this.movie_runtime_cv.text=movie.Runtime
             this.movie_title_cv.text = movie.Title
+            Glide.with(itemView.context).load(movie.Poster)
+                .placeholder(R.drawable.ic_launcher_background)
+                .into(movie_image_cv)
         }
     }
 }
