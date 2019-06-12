@@ -6,7 +6,9 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import com.deushdezt.laboratorio4.Database.MovieRoomDatabase
+
 import com.deushdezt.laboratorio4.Database.Repository.MovieRepository
+
 import com.deushdezt.laboratorio4.Database.pojos.Movie
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -16,7 +18,7 @@ class MovieViewModel(val app: Application):AndroidViewModel(app){
     val allMovies: LiveData<List<Movie>>
 
     init{
-        val movieDao = MovieRoomDatabase.getDatabase(app,viewModelScope).MovieDao()
+        val movieDao = MovieRoomDatabase.getInstance(app).movieDao()
         repository = MovieRepository(movieDao)
         allMovies = repository.getAllMovies()
     }

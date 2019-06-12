@@ -1,12 +1,13 @@
 package com.deushdezt.laboratorio4.Database.pojos
 
 import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.squareup.moshi.Json
 
 
 @Entity(tableName = "movies")
 data class Movie (
-    @field:Json(name = "title") val Title:String,
+    @PrimaryKey @field:Json(name = "title") val Title:String,
     @field:Json(name = "year") val Year:String,
     @field:Json(name = "release") val Released: String,
     @field:Json(name = "runtime") val Runtime:String,

@@ -12,24 +12,24 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 @Database(entities = [Movie::class], version = 1, exportSchema = false)
-public abstract class RoomDB : RoomDatabase() {
+public abstract class MovieRoomDatabase : RoomDatabase() {
 
     abstract fun movieDao():MovieDao
 
     companion object {
         @Volatile
-        private var INSTANCE: RoomDB? = null
+        private var INSTANCE: MovieRoomDatabase? = null
 
         fun getInstance(
             context: Context
-        ): RoomDB {
+        ): MovieRoomDatabase {
             val tempInstance = INSTANCE
             if (tempInstance != null) {
                 return tempInstance
             }
             synchronized(this) {
                 val instance = Room
-                    .databaseBuilder(context, RoomDB::class.java, "Movie_Database")
+                    .databaseBuilder(context, MovieRoomDatabase::class.java, "Movie_Database")
                     .build()
                 INSTANCE=instance
                 return instance

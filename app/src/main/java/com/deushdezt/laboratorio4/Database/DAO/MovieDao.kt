@@ -19,7 +19,7 @@ interface MovieDao{
     @Query("SELECT * FROM movies WHERE title LIKE :pattern")
     fun searchMoviePattern(pattern : String): LiveData<List<Movie>>
 
-    @Query("DROP TABLE movies")
+    @Query("DELETE FROM movies")
     fun delete()
 
 }
