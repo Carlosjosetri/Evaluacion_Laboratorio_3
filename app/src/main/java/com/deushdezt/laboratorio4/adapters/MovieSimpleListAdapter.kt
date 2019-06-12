@@ -1,12 +1,11 @@
 package com.deushdezt.laboratorio4.adapters
 
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.deushdezt.laboratorio4.MyMovieAdapter
 import com.deushdezt.laboratorio4.R
-import com.deushdezt.laboratorio4.pojos.Movie
+import com.deushdezt.laboratorio4.Database.pojos.Movie
 import kotlinx.android.synthetic.main.list_item_movie.view.*
 
 class MovieSimpleListAdapter(var movies:List<Movie>, val clickListener: (Movie) -> Unit): androidx.recyclerview.widget.RecyclerView.Adapter<MovieSimpleListAdapter.ViewHolder>(), MyMovieAdapter{

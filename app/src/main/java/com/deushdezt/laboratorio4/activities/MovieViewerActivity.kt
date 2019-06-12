@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.view.MenuItem
 import com.bumptech.glide.Glide
 import com.deushdezt.laboratorio4.R
-import com.deushdezt.laboratorio4.pojos.Movie
+import com.deushdezt.laboratorio4.Database.pojos.Movie
 import kotlinx.android.synthetic.main.viewer_movie.*
 
 class MovieViewerActivity: AppCompatActivity() {

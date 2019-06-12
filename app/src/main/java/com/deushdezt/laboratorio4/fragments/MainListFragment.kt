@@ -3,8 +3,6 @@ package com.deushdezt.laboratorio4.fragments
 import android.content.Context
 import android.content.res.Configuration
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,7 +11,7 @@ import com.deushdezt.laboratorio4.MyMovieAdapter
 import com.deushdezt.laboratorio4.R
 import com.deushdezt.laboratorio4.adapters.MovieAdapter
 import com.deushdezt.laboratorio4.adapters.MovieSimpleListAdapter
-import com.deushdezt.laboratorio4.pojos.Movie
+import com.deushdezt.laboratorio4.Database.pojos.Movie
 import kotlinx.android.synthetic.main.movies_list_fragment.*
 import kotlinx.android.synthetic.main.movies_list_fragment.view.*
 

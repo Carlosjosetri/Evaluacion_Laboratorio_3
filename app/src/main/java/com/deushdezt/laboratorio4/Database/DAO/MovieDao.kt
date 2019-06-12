@@ -1,16 +1,16 @@
-package com.deushdezt.laboratorio4.DAO
+package com.deushdezt.laboratorio4.Database.DAO
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.deushdezt.laboratorio4.pojos.Movie
+import com.deushdezt.laboratorio4.Database.pojos.Movie
 
 @Dao
 interface MovieDao{
 
-    @Query("SELECT * from movies ORDER BY id ASC")
+    @Query("SELECT * from movies ")
     fun getAllMovies() : LiveData<List<Movie>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
@@ -19,6 +19,7 @@ interface MovieDao{
     @Query("SELECT * FROM movies WHERE title LIKE :pattern")
     fun searchMoviePattern(pattern : String): LiveData<List<Movie>>
 
-
+    @Query("DROP TABLE movies")
+    fun delete()
 
 }

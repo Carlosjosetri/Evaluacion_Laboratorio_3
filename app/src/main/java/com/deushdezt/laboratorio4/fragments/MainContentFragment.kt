@@ -1,13 +1,12 @@
 package com.deushdezt.laboratorio4.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
 import com.deushdezt.laboratorio4.R
-import com.deushdezt.laboratorio4.pojos.Movie
+import com.deushdezt.laboratorio4.Database.pojos.Movie
 import kotlinx.android.synthetic.main.main_content_fragment_layout.view.*
 
 class MainContentFragment: androidx.fragment.app.Fragment() {

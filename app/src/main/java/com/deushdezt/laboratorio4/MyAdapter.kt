@@ -1,7 +1,6 @@
 package com.deushdezt.laboratorio4
 
-import com.deushdezt.laboratorio4.pojos.Movie
-import java.util.*
+import com.deushdezt.laboratorio4.Database.pojos.Movie
 
 object AppConstants{
     val dataset_saveinstance_key = "CLE"
