@@ -9,7 +9,7 @@ import com.squareup.moshi.Json
 data class Movie (
     @PrimaryKey @field:Json(name = "title") val Title:String,
     @field:Json(name = "year") val Year:String,
-    @field:Json(name = "imdbId") val id:String,
+    @field:Json(name = "imdbID") val id:String,
     @field:Json(name = "release") val Released: String,
     @field:Json(name = "runtime") val Runtime:String,
     @field:Json(name = "genre") val Genre:String,
