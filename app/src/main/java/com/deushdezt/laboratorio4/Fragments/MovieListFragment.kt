@@ -2,12 +2,12 @@ package com.deushdezt.laboratorio4.Fragments
 
 import android.content.Context
 import android.content.Intent
-<<<<<<< HEAD
+
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
-=======
+
 import android.content.res.Configuration
->>>>>>> b3e4e9db3b0ee0de88050b95349ed2bb219faa70
+
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
