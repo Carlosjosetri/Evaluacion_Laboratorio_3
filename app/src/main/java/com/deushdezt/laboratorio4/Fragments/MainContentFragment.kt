@@ -14,7 +14,7 @@ import kotlinx.android.synthetic.main.main_content_fragment_layout.view.*
 
 class MainContentFragment: Fragment() {
 
-    lateinit var movie : Movie
+    var movie = Movie()
 
     companion object {
         fun newInstance(movie: Movie): MainContentFragment{

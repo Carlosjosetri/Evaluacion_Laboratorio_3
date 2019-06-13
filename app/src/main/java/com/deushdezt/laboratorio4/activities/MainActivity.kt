@@ -45,9 +45,7 @@ class MainActivity : AppCompatActivity() , MovieListFragment.SearchNewMovieListe
         val resource = if(resources.configuration.orientation== Configuration.ORIENTATION_PORTRAIT)
             R.id.main_fragment
         else{
-            contentFragment = MainContentFragment.newInstance(Movie("N/A","N/A","N/A",
-                "N/A","N/A","N/A","N/A","N/A","N/A",
-                "N/A","N/A","N/A"))
+            contentFragment = MainContentFragment.newInstance(Movie())
             changeFragment(R.id.land_main_cont_fragment,contentFragment)
             R.id.land_main_fragment
         }
