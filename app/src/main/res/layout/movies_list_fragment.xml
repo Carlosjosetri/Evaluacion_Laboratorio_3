@@ -7,14 +7,17 @@
     android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".activities.MainActivity">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
         <EditText
             android:id="@+id/et_movie"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/bar_style"
+            android:padding="8dp"
             android:hint="Nombre de la pelicula"
             android:inputType="text"
             tools:layout_editor_absoluteX="16dp"
@@ -23,14 +26,21 @@
 
         <Button
             android:id="@+id/btn_movie"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Buscar pelicula :0"
-
+            android:layout_width="34dp"
+            android:layout_height="29dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/ic_search_black_24dp"
             tools:layout_editor_absoluteX="225dp"
             tools:layout_editor_absoluteY="16dp" />
 
-    </LinearLayout>
+    </RelativeLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_movies"

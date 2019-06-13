@@ -8,81 +8,96 @@
     app:cardElevation="10dp">
 
     <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:id="@+id/rvl"
+        android:background="@drawable/icon"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp">
 
-        <ImageView
-            android:id="@+id/movie_image_cv"
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/ic_launcher_background" />
 
         <TextView
             android:id="@+id/movie_title_cv"
-            android:layout_width="wrap_content"
+            android:layout_width="227dp"
             android:layout_height="wrap_content"
-            android:layout_alignEnd="@id/movie_image_cv"
-            android:layout_alignRight="@id/movie_image_cv"
-            android:layout_alignBottom="@id/movie_image_cv"
-            android:layout_margin="16dp"
-
-            android:background="#65000000"
-            android:gravity="end"
-
-            android:lines="1"
-            android:padding="8dp"
-
-            android:text="@string/movie_title_string"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="160dp"
+            android:layout_toLeftOf="@id/movie_image_cv"
+            android:drawableLeft="@drawable/iconpop"
+            android:text="movie_title"
+            android:textAlignment="center"
             android:textColor="#fff"
-            android:textSize="25sp" />
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/movie_rate_cv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignStart="@id/movie_image_cv"
-            android:layout_alignLeft="@id/movie_image_cv"
-            android:layout_alignTop="@id/movie_image_cv"
-
-            android:layout_margin="16dp"
-            android:background="#65000000"
-
+            android:layout_below="@id/movie_title_cv"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="13dp"
+            android:layout_marginRight="258dp"
+            android:layout_toLeftOf="@id/movie_image_cv"
             android:gravity="end"
-            android:padding="8dp"
 
-            android:text="@string/rate_ex_string"
+            android:text="type"
+            android:textAlignment="viewEnd"
+            android:textColor="#C1C1C1"
+            android:textSize="19sp" />
+
+        <TextView
+
+
+            android:id="@+id/movie_plot_cv"
+            android:layout_width="230dp"
+            android:layout_height="70dp"
+            android:layout_below="@id/movie_rate_cv"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginRight="161dp"
+            android:layout_toLeftOf="@id/movie_image_cv"
+            android:gravity="end"
+            android:lines="3"
+            android:text="@string/lorem_30_string"
+            android:textAlignment="viewEnd"
             android:textColor="#fff"
+            android:textSize="16dp" />
 
-            android:textSize="25sp" />
-
-        <LinearLayout
-            android:id="@+id/data_container_ll_cv"
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/movie_runtime_cv"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/movie_image_cv"
+            android:drawableLeft="@drawable/ic_timer_black_24dp"
+            android:layout_below="@id/movie_plot_cv"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="219dp"
+            android:layout_toLeftOf="@id/movie_image_cv"
+            android:gravity="end"
+            android:text="@string/runtime_ex_string"
+            android:textAlignment="viewEnd"
+            android:textColor="#fff"
+            android:textSize="16dp" />
 
-            android:orientation="vertical">
+        <ImageView
+            android:id="@+id/movie_image_cv"
+            android:layout_width="120dp"
+            android:layout_height="180dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="16dp"
+            android:layout_marginEnd="14dp"
+            android:layout_marginRight="14dp"
+            android:background="@drawable/bar_style"
+            android:padding="4dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_launcher_background" />
 
-            <TextView
-                android:id="@+id/movie_plot_cv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:ellipsize="end"
-                android:lines="3"
-                android:text="@string/lorem_30_string" />
-
-            <TextView
-                android:id="@+id/movie_runtime_cv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:gravity="end"
-                android:text="@string/runtime_ex_string" />
-
-        </LinearLayout>
 
     </RelativeLayout>
+
 
 </androidx.cardview.widget.CardView>
