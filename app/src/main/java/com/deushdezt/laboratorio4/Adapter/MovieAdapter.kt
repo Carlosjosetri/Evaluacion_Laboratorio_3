@@ -11,7 +11,7 @@ import com.deushdezt.laboratorio4.Database.pojos.Movie
 import com.deushdezt.laboratorio4.R
 import kotlinx.android.synthetic.main.cardview_movie.view.*
 
-class MovieAdapter(var movies:List<Movie>): RecyclerView.Adapter<MovieAdapter.ViewHolder>(){
+class MovieAdapter(var movies:List<Movie>,val clickListener: (Movie)-> Unit): RecyclerView.Adapter<MovieAdapter.ViewHolder>(){
 
     override fun onCreateViewHolder(parent : ViewGroup, viewType : Int):ViewHolder{
         val view = LayoutInflater.from(parent.context).inflate(R.layout.cardview_movie,parent,false)
@@ -23,7 +23,7 @@ class MovieAdapter(var movies:List<Movie>): RecyclerView.Adapter<MovieAdapter.Vi
     }
 
     override fun onBindViewHolder(holder: ViewHolder,position:Int){
-        holder.bind(movies[position])
+        holder.bind(movies[position],clickListener)
     }
 
     fun updateList(newMovies : List<Movie>){
@@ -36,7 +36,7 @@ class MovieAdapter(var movies:List<Movie>): RecyclerView.Adapter<MovieAdapter.Vi
 
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
 
-        fun bind(movie: Movie) = with(itemView){
+        fun bind(movie: Movie,clickListener: (Movie) -> Unit) = with(itemView){
             this.movie_rate_cv.text=movie.imdbRating
             this.movie_plot_cv.text=movie.Plot
             this.movie_runtime_cv.text=movie.Runtime
@@ -44,6 +44,7 @@ class MovieAdapter(var movies:List<Movie>): RecyclerView.Adapter<MovieAdapter.Vi
             Glide.with(itemView.context).load(movie.Poster)
                 .placeholder(R.drawable.ic_launcher_background)
                 .into(movie_image_cv)
+            this.setOnClickListener{clickListener(movie)}
         }
     }
 }
