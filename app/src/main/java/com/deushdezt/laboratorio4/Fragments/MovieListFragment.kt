@@ -24,7 +24,11 @@ import com.deushdezt.laboratorio4.Database.ViewModel.MovieViewModel
 import com.deushdezt.laboratorio4.Database.pojos.Movie
 import com.deushdezt.laboratorio4.R
 import com.deushdezt.laboratorio4.activities.MovieViewerActivity
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.movies_list_fragment.*
+
+
+
 
 class MovieListFragment : Fragment(){
 
@@ -36,7 +40,7 @@ class MovieListFragment : Fragment(){
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle? ): View? {
-        val view = inflater.inflate(R.layout.movies_list_fragment,container,false)
+        val view = inflater.inflate(com.deushdezt.laboratorio4.R.layout.movies_list_fragment,container,false)
         bind(resources.configuration.orientation,view)
         return view
     }
@@ -47,8 +51,8 @@ class MovieListFragment : Fragment(){
     }
 
     private fun bind(orientation:Int,view:View){
-        recycler = view.findViewById(R.id.rv_movies)
-        btn_search = view.findViewById(R.id.btn_movie)
+        recycler = view.findViewById(com.deushdezt.laboratorio4.R.id.rv_movies)
+        btn_search = view.findViewById(com.deushdezt.laboratorio4.R.id.btn_movie)
         if(orientation== Configuration.ORIENTATION_PORTRAIT) {
             adapter = MovieAdapter(ArrayList(),{movie:Movie -> listenerTool?.managePortraitItemClick(movie)})
         }
@@ -64,13 +68,30 @@ class MovieListFragment : Fragment(){
             adapter.updateList(it)
         })
 
-        val connectivityManager = context?.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        val activeNetwork: NetworkInfo? = connectivityManager.activeNetworkInfo
-        val isConnected: Boolean = activeNetwork?.isConnectedOrConnecting == true
-if(isConnected){  btn_search.setOnClickListener{
-    viewModel.retrieveMovies(et_movie.text.toString())
-}}
+        btn_search.setOnClickListener{
+            if(isNetworkConnected()==true){
+                viewModel.retrieveMovies(et_movie.text.toString())
+            }
+            else{
+                   var snack: Snackbar = Snackbar.make(view,"    NO HAY CONEXIÓN A INTERNET",
+                       Snackbar.LENGTH_LONG)
+                    snack.show()
 
+            }
+        }
+    }
+
+    protected fun isNetworkConnected(): Boolean {
+        try {
+            val mConnectivityManager =
+                activity!!.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+            val mNetworkInfo = mConnectivityManager.activeNetworkInfo
+            return if (mNetworkInfo == null) false else true
+
+        } catch (e: NullPointerException) {
+            return false
+
+        }
 
     }
 
