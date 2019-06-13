@@ -2,8 +2,14 @@ package com.deushdezt.laboratorio4.Fragments
 
 import android.content.Context
 import android.content.Intent
+
+import android.net.ConnectivityManager
+import android.net.NetworkInfo
+
 import android.content.res.Configuration
+
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -57,9 +63,14 @@ class MovieListFragment : Fragment(){
         viewModel.getAll().observe(this, Observer{
             adapter.updateList(it)
         })
-        btn_search.setOnClickListener{
-            viewModel.retrieveMovies(et_movie.text.toString())
-        }
+
+        val connectivityManager = context?.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val activeNetwork: NetworkInfo? = connectivityManager.activeNetworkInfo
+        val isConnected: Boolean = activeNetwork?.isConnectedOrConnecting == true
+if(isConnected){  btn_search.setOnClickListener{
+    viewModel.retrieveMovies(et_movie.text.toString())
+}}
+
 
     }
 
