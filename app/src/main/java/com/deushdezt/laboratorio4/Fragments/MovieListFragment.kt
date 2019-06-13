@@ -2,8 +2,12 @@ package com.deushdezt.laboratorio4.Fragments
 
 import android.content.Context
 import android.content.Intent
+<<<<<<< HEAD
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
+=======
+import android.content.res.Configuration
+>>>>>>> b3e4e9db3b0ee0de88050b95349ed2bb219faa70
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -27,19 +31,30 @@ class MovieListFragment : Fragment(){
     private lateinit var viewModel : MovieViewModel
     private lateinit var adapter : MovieAdapter
     private lateinit var recycler : RecyclerView
+    var listenerTool : SearchNewMovieListener? = null
     private lateinit var btn_search : Button
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle? ): View? {
         val view = inflater.inflate(R.layout.movies_list_fragment,container,false)
-        bind(view)
+        bind(resources.configuration.orientation,view)
         return view
     }
 
-    private fun bind(view:View){
+    interface SearchNewMovieListener{
+        fun manageLandscapeItemClick(movie: Movie)
+        fun managePortraitItemClick(movie: Movie)
+    }
+
+    private fun bind(orientation:Int,view:View){
         recycler = view.findViewById(R.id.rv_movies)
         btn_search = view.findViewById(R.id.btn_movie)
-        adapter = MovieAdapter(ArrayList(),{movie:Movie -> triggerActivity(movie)})
+        if(orientation== Configuration.ORIENTATION_PORTRAIT) {
+            adapter = MovieAdapter(ArrayList(),{movie:Movie -> listenerTool?.managePortraitItemClick(movie)})
+        }
+        if(orientation==Configuration.ORIENTATION_LANDSCAPE){
+            adapter = MovieAdapter(ArrayList(),{movie:Movie -> listenerTool?.manageLandscapeItemClick(movie)})
+        }
         viewModel = ViewModelProviders.of(this).get(MovieViewModel::class.java)
         recycler.apply{
             adapter=this@MovieListFragment.adapter
@@ -59,10 +74,19 @@ if(isConnected){  btn_search.setOnClickListener{
 
     }
 
-    fun triggerActivity(movie: Movie){
-        val movieBundle = Bundle()
-        movieBundle.putParcelable("movie",movie)
-        startActivity(Intent(requireContext(), MovieViewerActivity::class.java).putExtras(movieBundle))
+    override fun onAttach(context: Context?) {
+        super.onAttach(context)
+        if (context is SearchNewMovieListener) {
+            listenerTool = context
+        } else {
+            throw RuntimeException("Se necesita una implementación de  la interfaz")
+        }
     }
+
+    override fun onDetach() {
+        super.onDetach()
+        listenerTool = null
+    }
+
 
 }
